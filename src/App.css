@@ -1,0 +1,7 @@
+@media screen and (max-width: 400px) {
+  #about,
+  #roadmap,
+  #footer {
+    width: 111%;
+  }
+}

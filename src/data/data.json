@@ -1,0 +1,48 @@
+{
+  "Navigation": {
+    "discord": "",
+    "twitter": ""
+  },
+  "Header": {
+    "title": "Phantz Club",
+    "content": "Limited NFT Collection on the Elastos Blockchain"
+  },
+  "About": {
+    "title": "What is Phantz NFT?",
+    "content": "From the jungle to your hood, Phantz are taking over. <br/><br/> One dusty desert day, an elephant noticed something shiny sticking out of the sand—Wayfarer sunglasses. The second the elephant placed them on his head, he was thrust through a technicolor portal, and into Phantazy Land. <br/><br/> With the help of the shades, and a sprinkle of Metaverse Magic, Phantz live in a concrete safari, with beautiful pastel landscapes reminiscent of a Savannah sunset, and a hot Miami night. In this world, the Phantz community runs the show. We hold together, we bond together, we grow together. In <strong>Phantazy Land</strong>, the community makes the rules. The Phantz Club is exclusive, available only to Phantz NFT holders."
+  },
+  "Roadmap": [
+    {
+      "header": "[1%] Treasury Begins | 790 ELA [Completed]",
+      "content": ""
+    },
+    {
+      "header": "[10%] Treasury Increase | 2822 ELA [Completed]",
+      "content": ""
+    },
+    {
+      "header": "[25%] Available on Pasar Web Marketplace",
+      "content": ""
+    },
+    {
+      "header": "[50%] Reveal Rarities",
+      "content": ""
+    },
+    {
+      "header": "[50%] Treasury Increase | 5000 ELA",
+      "content": ""
+    },
+    {
+      "header": "75%] Web3 Social Dashboard | Profile.site",
+      "content": ""
+    },
+    {
+      "header": "[100%] Treasury Increase | 10000 ELA",
+      "content": ""
+    },
+    {
+      "header": "[100%] Open Club | Treasury to DAO",
+      "content": ""
+    }
+  ]
+}
