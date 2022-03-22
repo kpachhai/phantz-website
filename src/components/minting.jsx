@@ -18,9 +18,8 @@ export const MintDialog = (props) => {
       <div id="minting">
         <div>
           <p className="title text-center">
-            How many Phantz would you like to mint?
+            You will spend 0.1 ELA to mint NFT
           </p>
-          <CustomInput count={count} setCount={setCount} max={props.max} />
           <a
             onClick={() => props.onMint(parseInt(count))}
             className={`btn btn-mint btn-lg page-scroll ${
