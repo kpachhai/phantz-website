@@ -125,11 +125,13 @@ a:focus,
   font-size: 80px;
   font-weight: 700;
   line-height: 70px;
+  text-align: center;
 }
 #header .content {
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
+  text-align: center;
 }
 #header .info-outer {
   width: 100%;
@@ -167,6 +169,7 @@ a:focus,
 }
 #header .random img {
   margin: 10px 0;
+  max-width: 300px;
 
   -webkit-transition: opacity 1s ease-in-out;
   -moz-transition: opacity 1s ease-in-out;
@@ -180,6 +183,8 @@ a:focus,
   opacity: 0;
 }
 #header .btn-mint {
+  margin-top: 10px;
+  width: 100%;
   text-transform: uppercase;
   background: transparent;
   color: white;
