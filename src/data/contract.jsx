@@ -6,7 +6,7 @@ import phantzNFT from './nft.json';
 import nftSticker from './nftsticker.json';
 import { useRefresh } from './utils';
 
-const newPhantzNFTAddr = '0xc052C52A0ec6596954965725d0De9e3EBFcA9c5C';
+const newPhantzNFTAddr = '0xfDdE60866508263e30C769e8592BB0f8C3274ba7';
 const oldFeedsAddr = '0x020c7303664bc88ae92cE3D380BF361E03B78B81';
 
 export const connectWithMetamask = async () => {
@@ -87,7 +87,7 @@ export const swapNFT = async (account, tokenId) => {
   return await nft.methods.swap(tokenId).send({
     from: account,
     gasPrice,
-    gas: '79808',
+    gas: '200000',
   });
 };
 
@@ -105,7 +105,7 @@ export const approveFeeds = async (account) => {
   return await feed.methods.setApprovalForAll(newPhantzNFTAddr, true).send({
     from: account,
     gasPrice,
-    gas: '79808',
+    gas: '30000',
   });
 };
 export const useApproved = (isReady) => {
@@ -119,7 +119,7 @@ export const useApproved = (isReady) => {
         const userApproved = await feedsNFTSticker.methods
           .isApprovedForAll(account, newPhantzNFTAddr)
           .call();
-        console.log(userApproved);
+
         setApproved(userApproved);
       }
     };
