@@ -1,22 +1,25 @@
 export const Roadmap = (props) => (
-  <div id="roadmap">
-    <div className="container">
-      <p className="title text-center">Roadmap</p>
+  <div id='roadmap'>
+    <div className='container'>
+      <p className='title text-center'>Roadmap</p>
       {props.data.map((item, index) => (
-        <div key={index} className="col-md-8 col-md-offset-2">
-          <p className="header">{item.header}</p>
+        <div key={index} className='col-md-8 col-md-offset-2'>
           <p
-            className="content"
-            dangerouslySetInnerHTML={{ __html: item.content }}
-          />
+            className='content'
+            style={{
+              textDecoration: item.content.includes('Completed')
+                ? 'line-through'
+                : 'none',
+            }}
+          >
+            {item.content}
+          </p>
         </div>
       ))}
     </div>
-    <div id="footer">
-      <div className="container text-center">
-        <p>
-          &copy; Tuum.Tech Copyright
-        </p>
+    <div id='footer'>
+      <div className='container text-center'>
+        <p>&copy; Tuum.Tech Copyright</p>
       </div>
     </div>
   </div>

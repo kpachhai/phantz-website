@@ -1,7 +1,7 @@
 {
   "Navigation": {
     "discord": "",
-    "twitter": ""
+    "twitter": "https://twitter.com/PhantzClub"
   },
   "Header": {
     "title": "Phantz Club",
@@ -13,36 +13,28 @@
   },
   "Roadmap": [
     {
-      "header": "[1%] Treasury Begins | 790 ELA [Completed]",
-      "content": ""
+      "content": "[1%] Treasury Begins | 790 ELA [Completed]"
     },
     {
-      "header": "[10%] Treasury Increase | 2822 ELA [Completed]",
-      "content": ""
+      "content": "[10%] Treasury Increase | 2822 ELA [Completed]"
     },
     {
-      "header": "[25%] Available on Pasar Web Marketplace",
-      "content": ""
+      "content": "[25%] Available on Pasar Web Marketplace"
     },
     {
-      "header": "[50%] Reveal Rarities",
-      "content": ""
+      "content": "[50%] Reveal Rarities"
     },
     {
-      "header": "[50%] Treasury Increase | 5000 ELA",
-      "content": ""
+      "content": "[50%] Treasury Increase | 5000 ELA"
     },
     {
-      "header": "75%] Web3 Social Dashboard | Profile.site",
-      "content": ""
+      "content": "[75%] Web3 Social Dashboard | Profile.site"
     },
     {
-      "header": "[100%] Treasury Increase | 10000 ELA",
-      "content": ""
+      "content": "[100%] Treasury Increase | 10000 ELA"
     },
     {
-      "header": "[100%] Open Club | Treasury to DAO",
-      "content": ""
+      "content": "[100%] Open Club | Treasury to DAO"
     }
   ]
 }

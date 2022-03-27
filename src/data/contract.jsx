@@ -5,9 +5,7 @@ import BigNumber from 'bignumber.js';
 import phantzNFT from './nft.json';
 import nftSticker from './nftsticker.json';
 import { useRefresh } from './utils';
-
-const newPhantzNFTAddr = '0xfDdE60866508263e30C769e8592BB0f8C3274ba7';
-const oldFeedsAddr = '0x020c7303664bc88ae92cE3D380BF361E03B78B81';
+import { escContractAddress } from '../config/constant';
 
 export const connectWithMetamask = async () => {
   const accounts = await window.ethereum.request({
@@ -87,14 +85,14 @@ export const swapNFT = async (account, tokenId) => {
   return await nft.methods.swap(tokenId).send({
     from: account,
     gasPrice,
-    gas: '200000',
+    gas: '400000',
   });
 };
 
 const getPhantzNFTV2 = () => {
   const web3 = new Web3(window.ethereum);
 
-  return new web3.eth.Contract(phantzNFT, newPhantzNFTAddr);
+  return new web3.eth.Contract(phantzNFT, escContractAddress.newPhantzNFTAddr);
 };
 
 // ====================== FeedsNFTSticker
@@ -102,11 +100,13 @@ export const approveFeeds = async (account) => {
   const feed = getFeedsNFTSticker();
   const gasPrice = await getGasPrice();
 
-  return await feed.methods.setApprovalForAll(newPhantzNFTAddr, true).send({
-    from: account,
-    gasPrice,
-    gas: '30000',
-  });
+  return await feed.methods
+    .setApprovalForAll(escContractAddress.newPhantzNFTAddr, true)
+    .send({
+      from: account,
+      gasPrice,
+      gas: '30000',
+    });
 };
 export const useApproved = (isReady) => {
   const [approved, setApproved] = useState(false);
@@ -117,7 +117,7 @@ export const useApproved = (isReady) => {
       const account = await connectWithMetamask();
       if (account) {
         const userApproved = await feedsNFTSticker.methods
-          .isApprovedForAll(account, newPhantzNFTAddr)
+          .isApprovedForAll(account, escContractAddress.newPhantzNFTAddr)
           .call();
 
         setApproved(userApproved);
@@ -134,5 +134,5 @@ export const useApproved = (isReady) => {
 const getFeedsNFTSticker = () => {
   const web3 = new Web3(window.ethereum);
 
-  return new web3.eth.Contract(nftSticker, oldFeedsAddr);
+  return new web3.eth.Contract(nftSticker, escContractAddress.oldFeedsAddr);
 };

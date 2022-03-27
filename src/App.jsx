@@ -1,12 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import SmoothScroll from "smooth-scroll";
-import { Navigation } from "./components/navigation";
-import { Header } from "./components/header";
-import { About } from "./components/about";
-import { Roadmap } from "./components/roadmap";
-import { RefreshContextProvider } from "./data/utils";
-import jsonData from "./data/data.json";
-import "./App.css";
+import SmoothScroll from 'smooth-scroll';
+import { Navigation } from './components/navigation';
+import { Header } from './components/header';
+import { About } from './components/about';
+import { Roadmap } from './components/roadmap';
+import { RefreshContextProvider } from './data/utils';
+import jsonData from './data/data.json';
+import './App.css';
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
@@ -16,10 +16,10 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 export default () => (
   <RefreshContextProvider>
     <div>
-      {/* <Navigation data={jsonData.Navigation} /> */}
+      <Navigation data={jsonData.Navigation} />
       <Header data={jsonData.Header} />
       <About data={jsonData.About} />
-      {/* <Roadmap data={jsonData.Roadmap} /> */}
+      <Roadmap data={jsonData.Roadmap} />
     </div>
   </RefreshContextProvider>
 );

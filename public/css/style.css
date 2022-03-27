@@ -374,12 +374,12 @@ input:focus {
 
 /* Footer Section*/
 #footer {
-  background: white;
+  /* background: white; */
   padding: 30px;
   margin-top: 50px;
 }
 #footer p {
-  color: black;
+  color: white;
 }
 
 /* Roadmap Section */
@@ -392,16 +392,11 @@ input:focus {
   font-weight: 800;
   text-transform: uppercase;
 }
-#roadmap .header {
-  font-size: 32px;
-  font-weight: 700;
-  margin-top: 50px;
-  margin-bottom: 12px;
-}
 #roadmap .content {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 300;
   line-height: 24px;
+  margin-top: 10px;
 }
 #roadmap #footer p {
   font-size: 16px;
