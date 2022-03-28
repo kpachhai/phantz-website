@@ -105,7 +105,7 @@ export const approveFeeds = async (account) => {
     .send({
       from: account,
       gasPrice,
-      gas: '30000',
+      gas: '100000',
     });
 };
 export const useApproved = (isReady) => {
