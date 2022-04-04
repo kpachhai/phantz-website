@@ -7,15 +7,7 @@ import nftSticker from './nftsticker.json';
 import { useRefresh } from './utils';
 import { escContractAddress } from '../config/constant';
 
-export const connectWithMetamask = async () => {
-  const accounts = await window.ethereum.request({
-    method: 'eth_requestAccounts',
-  });
-  if (accounts.length > 0) return accounts[0];
-  return null;
-};
-
-export const useChainId = (isReady) => {
+export const useChainId = (isReady, blockchain) => {
   const [chainId, setChainId] = useState('');
 
   useEffect(() => {
@@ -62,28 +54,29 @@ export const getGasPrice = async () => {
 
 // ====================== PhantzNFT
 
-export const mintNFT = async (account, price) => {
+export const mintNFT = async (blockchain, price) => {
   const nft = getPhantzNFTV2();
-  const gasPrice = await getGasPrice();
-  const estimateGas = await nft.methods.mint(account).estimateGas({
-    from: account,
+  const gasPrice = (await new blockchain.web3.eth.getGasPrice()) + 50;
+
+  const estimateGas = await nft.methods.mint(blockchain.account).estimateGas({
+    from: blockchain.account,
     value: new BigNumber(price).times(Math.pow(10, 18)),
   });
 
-  return await nft.methods.mint(account).send({
-    from: account,
+  return await nft.methods.mint(blockchain.account).send({
+    from: blockchain.account,
     value: new BigNumber(price).times(Math.pow(10, 18)),
     gasPrice,
     gas: estimateGas,
   });
 };
 
-export const swapNFT = async (account, tokenId) => {
+export const swapNFT = async (blockchain, tokenId) => {
   const nft = getPhantzNFTV2();
-  const gasPrice = await getGasPrice();
+  const gasPrice = (await new blockchain.web3.eth.getGasPrice()) + 50;
 
   return await nft.methods.swap(tokenId).send({
-    from: account,
+    from: blockchain.account,
     gasPrice,
     gas: '400000',
   });
@@ -96,43 +89,48 @@ const getPhantzNFTV2 = () => {
 };
 
 // ====================== FeedsNFTSticker
-export const approveFeeds = async (account) => {
-  const feed = getFeedsNFTSticker();
-  const gasPrice = await getGasPrice();
+export const approveFeeds = async (blockchain) => {
+  const feedsNFTSticker = new blockchain.web3.eth.Contract(
+    nftSticker,
+    escContractAddress.oldFeedsAddr
+  );
+  const gasPrice = (await new blockchain.web3.eth.getGasPrice()) + 50;
 
-  return await feed.methods
+  return await feedsNFTSticker.methods
     .setApprovalForAll(escContractAddress.newPhantzNFTAddr, true)
     .send({
-      from: account,
+      from: blockchain.account,
       gasPrice,
       gas: '100000',
     });
 };
-export const useApproved = (isReady) => {
+export const useApproved = (blockchain) => {
   const [approved, setApproved] = useState(false);
-  const feedsNFTSticker = getFeedsNFTSticker();
 
   useEffect(() => {
     const fetch = async () => {
-      const account = await connectWithMetamask();
-      if (account) {
+      if (blockchain.account) {
+        const feedsNFTSticker = new blockchain.web3.eth.Contract(
+          nftSticker,
+          escContractAddress.oldFeedsAddr
+        );
+
         const userApproved = await feedsNFTSticker.methods
-          .isApprovedForAll(account, escContractAddress.newPhantzNFTAddr)
+          .isApprovedForAll(
+            blockchain.account,
+            escContractAddress.newPhantzNFTAddr
+          )
           .call();
+
+        console.log('===>userApproved');
 
         setApproved(userApproved);
       }
     };
-    if (isReady) {
+    if (blockchain.account) {
       fetch();
     }
-  }, [isReady]);
+  }, [blockchain]);
 
   return approved;
-};
-
-const getFeedsNFTSticker = () => {
-  const web3 = new Web3(window.ethereum);
-
-  return new web3.eth.Contract(nftSticker, escContractAddress.oldFeedsAddr);
 };

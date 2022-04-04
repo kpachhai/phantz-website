@@ -19,6 +19,13 @@ export const Roadmap = (props) => (
     </div>
     <div id='footer'>
       <div className='container text-center'>
+        <a href='https://twitter.com/PhantzClub' alt='twitter'>
+          <img
+            src='img/twitter.png'
+            alt='twitter'
+            style={{ width: '30px', marginBottom: '10px' }}
+          />
+        </a>
         <p>&copy; Tuum.Tech Copyright</p>
       </div>
     </div>

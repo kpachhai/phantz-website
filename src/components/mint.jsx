@@ -2,23 +2,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import { connectWithMetamask, mintNFT } from '../data/contract';
+import { mintNFT } from '../data/contract';
 
-const MintComp = ({ price, onNofity }) => {
+const MintComp = ({ price, onNofity, blockchain }) => {
   const [isMinting, setMinting] = useState(false);
 
   const onMint = async () => {
-    const acc = await connectWithMetamask();
-    if (acc) {
-      setMinting(true);
-      try {
-        await mintNFT(acc, price);
-        onNofity('NFT minted successfully', true);
-      } catch (e) {
-        onNofity('Not minted. Errors occurred', false);
-      }
-      setMinting(false);
+    setMinting(true);
+    try {
+      await mintNFT(blockchain, price);
+      onNofity('NFT minted successfully', true);
+    } catch (e) {
+      onNofity('Not minted. Errors occurred', false);
     }
+    setMinting(false);
   };
 
   return (

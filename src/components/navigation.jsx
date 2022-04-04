@@ -18,15 +18,6 @@ export const Navigation = (props) => (
         </a>{' '}
       </div>
 
-      <div className='social text-center'>
-        {/* <a href={props.data.discord} alt="discord">
-          <img src="img/discord.png" alt="discord" />
-        </a> */}
-        <a href={props.data.twitter} alt='twitter'>
-          <img src='img/twitter.png' alt='twitter' />
-        </a>
-      </div>
-
       <div
         className='collapse navbar-collapse'
         id='bs-example-navbar-collapse-1'

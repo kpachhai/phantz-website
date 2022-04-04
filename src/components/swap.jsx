@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import BigNumber from 'bignumber.js';
 
-import { connectWithMetamask, swapNFT } from '../data/contract';
+import { swapNFT } from '../data/contract';
 import { oldTokenIds } from '../data/oldNFTs';
 
-const SwapComp = ({ onNofity }) => {
+const SwapComp = ({ onNofity, blockchain }) => {
   const [tokenIDStr, setTokenIDStr] = useState(0);
   const [isSwapping, setSwapping] = useState(false);
 
@@ -20,11 +20,11 @@ const SwapComp = ({ onNofity }) => {
       onNofity('Invalid tokenID', false);
       return;
     }
-    const acc = await connectWithMetamask();
-    if (acc && tokenID !== '') {
+
+    if (tokenID !== '') {
       setSwapping(true);
       try {
-        await swapNFT(acc, tokenID);
+        await swapNFT(blockchain, tokenID);
         onNofity('NFT swapped successfully', true);
       } catch (e) {
         onNofity('Not swapped. Errors occurred', false);
