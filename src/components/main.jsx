@@ -32,7 +32,7 @@ export const Content = (props) => {
   const [count, setCount] = useState(10);
   const [isLoading, setLoading] = useState(true);
 
-  const price = usePrice(blockchain && blockchain.account);
+  const price = usePrice(blockchain);
   const isApprovedForAll = useApproved(blockchain);
 
   const [showSwap, setShowSwap] = useState(false);
@@ -162,7 +162,7 @@ export const Content = (props) => {
                 dispatch(connect());
               }}
             >
-              CONNECT METAMASK
+              CONNECT
             </div>
           </>
         )}

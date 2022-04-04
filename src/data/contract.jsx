@@ -28,21 +28,24 @@ export const useChainId = (isReady, blockchain) => {
   return chainId;
 };
 
-export const usePrice = (isReady) => {
+export const usePrice = (blockchain) => {
   const { fastRefresh } = useRefresh();
   const [price, setPrice] = useState('');
-  const nft = getPhantzNFTV2();
 
   useEffect(() => {
     const fetch = async () => {
+      const nft = new blockchain.web3.eth.Contract(
+        phantzNFT,
+        escContractAddress.newPhantzNFTAddr
+      );
       const price = await nft.methods.platformFee().call();
       setPrice(
         new BigNumber(price).dividedBy(new BigNumber(10).pow(18)).toString()
       );
     };
 
-    if (isReady) fetch();
-  }, [fastRefresh, isReady]);
+    if (blockchain && blockchain.account) fetch();
+  }, [fastRefresh, blockchain]);
 
   return price;
 };
@@ -55,13 +58,19 @@ export const getGasPrice = async () => {
 // ====================== PhantzNFT
 
 export const mintNFT = async (blockchain, price) => {
-  const nft = getPhantzNFTV2();
+  // const nft = getPhantzNFTV2();
+  const nft = new blockchain.web3.eth.Contract(
+    phantzNFT,
+    escContractAddress.newPhantzNFTAddr
+  );
   const gasPrice = (await new blockchain.web3.eth.getGasPrice()) + 50;
-
   const estimateGas = await nft.methods.mint(blockchain.account).estimateGas({
     from: blockchain.account,
     value: new BigNumber(price).times(Math.pow(10, 18)),
   });
+
+  console.log('===>gasprice', gasPrice);
+  console.log('===>estimateGas', estimateGas);
 
   return await nft.methods.mint(blockchain.account).send({
     from: blockchain.account,
@@ -72,7 +81,11 @@ export const mintNFT = async (blockchain, price) => {
 };
 
 export const swapNFT = async (blockchain, tokenId) => {
-  const nft = getPhantzNFTV2();
+  const nft = new blockchain.web3.eth.Contract(
+    phantzNFT,
+    escContractAddress.newPhantzNFTAddr
+  );
+
   const gasPrice = (await new blockchain.web3.eth.getGasPrice()) + 50;
 
   return await nft.methods.swap(tokenId).send({
@@ -80,12 +93,6 @@ export const swapNFT = async (blockchain, tokenId) => {
     gasPrice,
     gas: '400000',
   });
-};
-
-const getPhantzNFTV2 = () => {
-  const web3 = new Web3(window.ethereum);
-
-  return new web3.eth.Contract(phantzNFT, escContractAddress.newPhantzNFTAddr);
 };
 
 // ====================== FeedsNFTSticker

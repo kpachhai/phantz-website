@@ -2,7 +2,6 @@
 import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import { config } from '../../config.js';
 
 let web3Modal = '';
 let provider = '';
@@ -66,7 +65,7 @@ export const connect = () => {
       try {
         const accounts = await web3.eth.getAccounts();
         const networkId = await web3.eth.getChainId();
-        if (networkId === config.NETWORK.ID) {
+        if (networkId === 20) {
           dispatch(
             connectSuccess({
               account: accounts[0],
@@ -88,9 +87,7 @@ export const connect = () => {
             });
             dispatch(connect());
           } catch {
-            dispatch(
-              connectFailed(`Change network to ${config.NETWORK.NAME}.`)
-            );
+            dispatch(connectFailed(`Change network to Elastos Smart Chain.`));
           }
         }
       } catch (err) {
